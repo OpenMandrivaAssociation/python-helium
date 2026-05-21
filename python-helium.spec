@@ -1,18 +1,26 @@
+%define module helium
+
 Name:		python-helium
-Version:	7.0.0
+Version:	7.0.1
 Release:	1
-Source0:	https://files.pythonhosted.org/packages/source/h/helium/helium-%{version}.tar.gz
 Summary:	Lighter browser automation based on Selenium.
-URL:		https://pypi.org/project/helium/
-License:	None
+License:	MIT
 Group:		Development/Python
-BuildRequires:	python
+URL:		https://pypi.org/project/helium
+Source0:	https://files.pythonhosted.org/packages/source/h/%{module}/%{module}-%{version}.tar.gz#/%{name}-%{version}.tar.gz
+
 BuildSystem:	python
 BuildArch:	noarch
+BuildRequires:	python
 
 %description
 Lighter browser automation based on Selenium.
 
+%prep -a
+# Remove bundled egg-info
+rm -rf %{module}.egg-info
+
 %files
-%{py_sitedir}/helium
-%{py_sitedir}/helium-*.*-info
+%license LICENSE.txt
+%{python_sitelib}/%{module}
+%{python_sitelib}/%{module}-%{version}*.*-info
